@@ -18,6 +18,7 @@ Terhi_40_to_120_magical_conversion<-function(Search.time.cum,Total){
   if (nrow(data.NPP)<3) {
     Tot.SCorr[[1]]<-NA
     Tot.SCorr[[2]]<-'failed_due_to_NA_in_data'
+    Tot.SCorr[[3]]<-NA
     warning('The above sample have too many NA, can not calculate a result',immediate. = TRUE)
   }else{
   data.NPP$Combined.code.2<-'XXXXX'
@@ -136,10 +137,12 @@ Terhi_40_to_120_magical_conversion<-function(Search.time.cum,Total){
   Tot.SCorr[[2]] <- ifelse(!is.na(Root.SCorr$Logarithmic), 'Logarithmic', 
                       ifelse(!is.na(Root.SCorr$MichaelisMenten), 'MichaelisMenten', 
                              ifelse(!is.na(Root.SCorr$Power), 'Power', 
-                                    ifelse(!is.na(Root.SCorr$ExponentialRise), Root.SCorr$ExponentialRise, 'just_maximum'))))
+                                    ifelse(!is.na(Root.SCorr$ExponentialRise), 'ExponentialRis', 'just_maximum'))))
   if (Tot.SCorr[[2]]=='just_maximum') {
     warning('All curves fitting failed! Method just_maximum was used, where the root mass at the final timestep was used, no 40 to 120 correction, if you see this lots of times, it is possible that one of your options is wrong')
   }
+  
+  Tot.SCorr[[3]] <- Root.SCorr$max
   
   }
   return(Tot.SCorr)

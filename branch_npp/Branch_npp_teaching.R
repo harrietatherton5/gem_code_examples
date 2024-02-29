@@ -28,7 +28,7 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···How does this script work?  ----
+##  ???How does this script work?  ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Read comments first and come back here to write a paragraph (in French if you
@@ -38,74 +38,74 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···Necessary input  ----
+##  ???Necessary input  ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 #  please read GEM ptotocol and cwd_meta_data.csv for explaination
 #  of the dataset   
 
-#···············································································
-#  $ plot_code : chr "XXX-04" "XXX-04" "XXX-04" "XXX-04" ...                   ·
-#  $ cwd_transect_num : int 1 1 1 1 1 2 2 2 2 2 ...                            ·
-#  $ transect_area_m2 : int 4 4 4 4 4 4 4 4 4 4 ...                            ·
-#  $ measurement_num : int 1 2 3 4 5 1 2 3 4 5 ...                             ·
-#  $ year : int 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 ...          ·
-#  $ month : int 7 7 7 7 7 7 7 7 7 7 ...                                       ·
-#  $ day : int 2 2 2 2 2 2 2 2 2 2 ...                                         ·
-#  $ decay_class : int 1 2 3 4 5 1 2 3 4 5 ...                                 ·
-#  $ diameter_top_1_cm : logi NA NA NA NA NA NA ...                            ·
-#  $ diameter_top_2_cm : logi NA NA NA NA NA NA ...                            ·
-#  $ diameter_bottom_1_cm : logi NA NA NA NA NA NA ...                         ·
-#  $ diameter_bottom_2_cm : logi NA NA NA NA NA NA ...                         ·
-#  $ length_cm : logi NA NA NA NA NA NA ...                                    ·
-#  $ forest_weight_total_g : int 0 0 0 0 0 0 0 0 1200 1500 ...                 ·
-#  $ forest_weight_sample_g : int 0 0 0 0 0 0 0 0 120 150 ...                  ·
-#  $ dry_weight_sample_g : num 0 0 0 0 0 0 0 0 52.9 64.3 ...                   ·
-#  $ volumn_cm3 : logi NA NA NA NA NA NA ...                                   ·
-#  $ is_stock : chr "Y" "Y" "Y" "Y" ...                                        ·
-#  $ include_as_branch_npp : chr "N" "N" "N" "N" ...                           ·
-#  $ DaysBetween : int 1 1 1 1 1 1 1 1 1 1 ...                                 ·
-#···············································································
+#???????????????????????????????????????????????????????????????????????????????
+#  $ plot_code : chr "XXX-04" "XXX-04" "XXX-04" "XXX-04" ...                   ?
+#  $ cwd_transect_num : int 1 1 1 1 1 2 2 2 2 2 ...                            ?
+#  $ transect_area_m2 : int 4 4 4 4 4 4 4 4 4 4 ...                            ?
+#  $ measurement_num : int 1 2 3 4 5 1 2 3 4 5 ...                             ?
+#  $ year : int 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 ...          ?
+#  $ month : int 7 7 7 7 7 7 7 7 7 7 ...                                       ?
+#  $ day : int 2 2 2 2 2 2 2 2 2 2 ...                                         ?
+#  $ decay_class : int 1 2 3 4 5 1 2 3 4 5 ...                                 ?
+#  $ diameter_top_1_cm : logi NA NA NA NA NA NA ...                            ?
+#  $ diameter_top_2_cm : logi NA NA NA NA NA NA ...                            ?
+#  $ diameter_bottom_1_cm : logi NA NA NA NA NA NA ...                         ?
+#  $ diameter_bottom_2_cm : logi NA NA NA NA NA NA ...                         ?
+#  $ length_cm : logi NA NA NA NA NA NA ...                                    ?
+#  $ forest_weight_total_g : int 0 0 0 0 0 0 0 0 1200 1500 ...                 ?
+#  $ forest_weight_sample_g : int 0 0 0 0 0 0 0 0 120 150 ...                  ?
+#  $ dry_weight_sample_g : num 0 0 0 0 0 0 0 0 52.9 64.3 ...                   ?
+#  $ volumn_cm3 : logi NA NA NA NA NA NA ...                                   ?
+#  $ is_stock : chr "Y" "Y" "Y" "Y" ...                                        ?
+#  $ include_as_branch_npp : chr "N" "N" "N" "N" ...                           ?
+#  $ DaysBetween : int 1 1 1 1 1 1 1 1 1 1 ...                                 ?
+#???????????????????????????????????????????????????????????????????????????????
 
 ##~~~~~~~~~~~~~~~~~~~~~~~
-##  ···important note----
+##  ???important note----
 ##~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
-#···············································································
-#  1. one row is one measruement taken from a transect, you can have           ·
-#     several measurements per transect, a single measurement could be a bag   ·
-#     containing multiple pieces, OR could be a big branch that you can't      ·
-#     weight, OR a single small branch that you can weight. Every measurement  ·
-#     within a transect should have a unique measurement number, just like     ·
-#     Rec_no of EGM flux measruement. The sum of all measurements under a      ·
-#     transect will be the total weight for this transect.                     ·
-#     A single measurement could be either dry weight, or diameter/length, the ·
-#     script will convert them into dry mass depending on which one is         ·
+#???????????????????????????????????????????????????????????????????????????????
+#  1. one row is one measruement taken from a transect, you can have           ?
+#     several measurements per transect, a single measurement could be a bag   ?
+#     containing multiple pieces, OR could be a big branch that you can't      ?
+#     weight, OR a single small branch that you can weight. Every measurement  ?
+#     within a transect should have a unique measurement number, just like     ?
+#     Rec_no of EGM flux measruement. The sum of all measurements under a      ?
+#     transect will be the total weight for this transect.                     ?
+#     A single measurement could be either dry weight, or diameter/length, the ?
+#     script will convert them into dry mass depending on which one is         ?
 #     available
-#                                                                              ·
-#  2. this csv is for branch NPP and small nacromass stock, don't use this     ·
-#     for snag survey or nacromass survey, the diameter and length here is for ·
-#     branch, not dead stem                                                    ·
-#                                                                              ·
-#  3. NA and 0 is treated differently in this script. If you put NA, the       ·
-#     script is going to remove the record, understanding it as unknown/       ·
-#     not_measured. If you put 0, the script understand that there is no       ·
-#     branch under such transect and decay class. For example, if you have     ·
-#     big branch that you can't lift, you need to put in length and diameter,  ·
-#     with Forest_weight as NA. If you did not find anything under decay       ·
-#     class 1, you should still have a row with decay class one but you put    ·
-#     Forest_weight as 0, Sample_weight as 0.                                  ·
-#                                                                              ·
-#  4. is_stock = Y will be used in nacromass estimation,                       ·
+#                                                                              ?
+#  2. this csv is for branch NPP and small nacromass stock, don't use this     ?
+#     for snag survey or nacromass survey, the diameter and length here is for ?
+#     branch, not dead stem                                                    ?
+#                                                                              ?
+#  3. NA and 0 is treated differently in this script. If you put NA, the       ?
+#     script is going to remove the record, understanding it as unknown/       ?
+#     not_measured. If you put 0, the script understand that there is no       ?
+#     branch under such transect and decay class. For example, if you have     ?
+#     big branch that you can't lift, you need to put in length and diameter,  ?
+#     with Forest_weight as NA. If you did not find anything under decay       ?
+#     class 1, you should still have a row with decay class one but you put    ?
+#     Forest_weight as 0, Sample_weight as 0.                                  ?
+#                                                                              ?
+#  4. is_stock = Y will be used in nacromass estimation,                       ?
 #     include_as_branch_npp = Y will be used in branch NPP calculation
 #     It is possible that both of them are N, like dead tree, or whatever you
 #     dont want to include
 #
 #  5. Run one plot at a time
-#···············································································
+#???????????????????????????????????????????????????????????????????????????????
 
 
 
@@ -114,7 +114,7 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ##~~~~~~~~~~~~~~~~~~~~~~
-##···quality check  ----
+##???quality check  ----
 ##~~~~~~~~~~~~~~~~~~~~~~
 rm(list = ls())
 library(nlme)
@@ -159,7 +159,7 @@ census$include_as_branch_npp   <- as.factor(census$include_as_branch_npp    )
 
 
 ##~~~~~~~~~~~~~~~~~~~~~
-##···your options  ----
+##???your options  ----
 ##~~~~~~~~~~~~~~~~~~~~~
 
 Days_interval_recorded = FALSE
@@ -173,26 +173,27 @@ Days_interval_recorded = FALSE
 #  NPP is calculated as cwd_weight/days_interval
 
 # represent wood density from decay class 1 to 5
-decomposed_wd_g_cm3<- c(0.501, 0.434, 0.421, 0.308, 0.185)
+decomposed_wd_g_cm3<- c(0.501, 0.434, 0.421, 0.308, 0.185,0.421)
 Live_wood_density<-0.523 
 # Live_wood_density is weighted average of alive wood density of your plot
 # This will be used to estimate alive wood mass from branch volumn measurements
 # Will also be used to back calculate decayed wood dry mass into alive wood
-# drymass
+# drymass, here the example has 5 decay classes, the last one is for decay class=NA
 
 # if you wish to calculate Live_wood_density from census data, or to calculate 
 # decomposed_wd_g_cm3from coarse woody debris sample, check "Archived information"
 # in this script
 
-decay_class = c(1,2,3,4,5)
-# this must match up with WoodDensity_g_cm3
-WD_ConversionFactorToAlive <- Live_wood_density/WoodDensity_g_cm3
-df_decay_wood_density<-data.frame(decay_class,WoodDensity_g_cm3,Live_wood_density,WD_ConversionFactorToAlive)
+decay_class = c(1,2,3,4,5,NA)
+# this must match up with decomposed_wd_g_cm3
+# you need to add an NA, in case you have NA in your decay class
+WD_ConversionFactorToAlive <- Live_wood_density/decomposed_wd_g_cm3
+df_decay_wood_density<-data.frame(decay_class,decomposed_wd_g_cm3,Live_wood_density,WD_ConversionFactorToAlive)
 
-#···············································································
-#  normally you don't need to change anything below, but you might want to     ·
-#  read and double-check that it works for your site                           ·
-#···············································································
+#???????????????????????????????????????????????????????????????????????????????
+#  normally you don't need to change anything below, but you might want to     ?
+#  read and double-check that it works for your site                           ?
+#???????????????????????????????????????????????????????????????????????????????
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##              4. estimate the weight of big branch from its size          ----
@@ -213,7 +214,7 @@ cen<-census%>%
   # to bring in WD_ConversionFactorToAlive
   # we use this ratio to convert decayed wood into live wood
   # we want branch npp so we want to know the weight when the wood is alive
-  mutate(Dry_mass_from_volumn_g=Volumn_cm3*WoodDensity_g_cm3)
+  mutate(Dry_mass_from_volumn_g=Volumn_cm3*decomposed_wd_g_cm3)
   
 
 
@@ -276,7 +277,7 @@ Stock_pool = list()
 npp_pool = list()
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···loop through every transect----
+##  ???loop through every transect----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 for (i in 1:length(transect_id)) {
   one_transect_only <- cen2 %>%
@@ -298,7 +299,7 @@ for (i in 1:length(transect_id)) {
   }
   
  
-  #··················if you dont have DaysBetween··················
+  #??????????????????if you dont have DaysBetween??????????????????
   
   if (!Days_interval_recorded) {
     #The first one must be is_stock=Y
@@ -316,17 +317,17 @@ for (i in 1:length(transect_id)) {
     # This fill in days interval according to date record
   }
   
-  #···················Get branch nacromass stock···················
+  #???????????????????Get branch nacromass stock???????????????????
   
   Stock_pool[[i]]<-one_transect_only_stock
   # NPP should be mass / days interval
   npp_pool[[i]]<- one_transect_only %>%
     filter(include_as_branch_npp == 'Y')%>%
     mutate(NPP_g_day=dry_mass_when_alive/DaysBetween)
-  #················this is where NPP was calculated················
-  #················this is where NPP was calculated················
-  #················this is where NPP was calculated················
-  #················this is where NPP was calculated················
+  #????????????????this is where NPP was calculated????????????????
+  #????????????????this is where NPP was calculated????????????????
+  #????????????????this is where NPP was calculated????????????????
+  #????????????????this is where NPP was calculated????????????????
   }
 
 All_stock = do.call(rbind, Stock_pool)
@@ -336,7 +337,7 @@ All_npp = do.call(rbind, npp_pool)
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···unit conversion----
+##  ???unit conversion----
 ##~~~~~~~~~~~~~~~~~~~~~~~~
 # Unit conversion
 # The current unit is grams of estimated living biomass per quadrat per collection interval
@@ -350,9 +351,7 @@ cc <- 0.45
 # Divide by quadrat area and multiply by 10000 --> from NPP per quadrat to NPP per m2 to NPP per ha
 #  multiply by 365 --> from NPP over collection interval to NPP per day to NPP per year
 
-Unit_correct=cc/ 10^6 / mean(cen$transect_area_m2)* 10000* 365
-All_stock$stock_nacromass_MgC_ha = All_stock$dry_mass_calculated_combined_g * Unit_correct /365
-All_npp$npp_MgC_ha_year = All_npp$NPP_g_day * Unit_correct 
+
 
 
 
@@ -363,33 +362,35 @@ write.csv (All_npp, file = paste0(census$plot_code[1],"_branch_NPP_finest.csv"))
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##                            7. data visualization                         ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unit_correct=cc/ 10^6 / mean(cen$transect_area_m2)* 10000* 365
+All_stock$stock_nacromass_MgC_ha = All_stock$dry_mass_calculated_combined_g * Unit_correct /365
+All_npp$npp_MgC_ha_year = All_npp$NPP_g_day * Unit_correct 
 
-
-#···············································································
-#  I need to put explaination to output files here, but you can read the       ·
-#  name to understand                                                          ·
-#···············································································
+#???????????????????????????????????????????????????????????????????????????????
+#  I need to put explaination to output files here, but you can read the       ?
+#  name to understand                                                          ?
+#???????????????????????????????????????????????????????????????????????????????
 
 Sum_all_decay_class_stock<-All_stock%>%
-  group_by(cwd_transect_num,date)%>%
+  group_by(cwd_transect_num,date,plot_code)%>%
   summarise(stock_nacromass_MgC_ha = sum(stock_nacromass_MgC_ha,na.rm=T), #sum across different decay classes
             across(c(plot_code:day),  first))
 
 
 Sum_all_decay_class_npp<-All_npp%>%
-  group_by(cwd_transect_num,date)%>%
+  group_by(cwd_transect_num,date,plot_code)%>%
   summarise(npp_MgC_ha_year = sum(npp_MgC_ha_year,na.rm=T),
             DaysBetween=mean(DaysBetween), # well, they should have the same DaysBetween
             across(c(plot_code:day),  first))
 
 
-All_npp_by_date<-All_npp%>%
+All_npp_by_date<-Sum_all_decay_class_npp%>%
   group_by(date)%>% #change it to year if you want x axis to be year
   summarise(npp_MgC_ha_year_mean = mean(npp_MgC_ha_year,na.rm=T),
             npp_MgC_ha_year_std = standard_error_calc(npp_MgC_ha_year,na.rm=T),
             across(c(plot_code:day,DaysBetween),  first))
 
-All_npp_whole_plot<-All_npp%>%
+All_npp_whole_plot<-Sum_all_decay_class_npp%>%
   ungroup()%>%
   summarise(
     npp_MgC_ha_year_plot = wtd.mean(npp_MgC_ha_year,weights = DaysBetween),
@@ -397,7 +398,7 @@ All_npp_whole_plot<-All_npp%>%
     across(c(plot_code),  first))
 # The standard error is a mean over all quadrats and time step
 
-All_npp_per_transect<-All_npp%>%
+All_npp_per_transect<-Sum_all_decay_class_npp%>%
   group_by(cwd_transect_num)%>%
   summarise(
     npp_MgC_ha_year_transect = wtd.mean(npp_MgC_ha_year,weights = DaysBetween),
@@ -406,7 +407,7 @@ All_npp_per_transect<-All_npp%>%
     #npp_MgC_ha_year_transect_ste =standard_error_calc(npp_MgC_ha_year),
     across(c(plot_code),  first))
 
-All_stock_plot<-All_stock%>%
+All_stock_plot<-Sum_all_decay_class_stock%>%
   summarise(stock_nacromass_MgC_ha_mean = mean(stock_nacromass_MgC_ha,na.rm=T),
             stock_nacromass_MgC_ha_ste = standard_error_calc(stock_nacromass_MgC_ha,na.rm=T))
 
@@ -473,7 +474,7 @@ ggplot(All_npp_per_transect, aes(x=cwd_transect_num, y=npp_MgC_ha_year_transect)
 
 
 
-#·····················grab live wood density·····················
+#?????????????????????grab live wood density?????????????????????
 
 STEM_npp <- read.csv("F:/Side_project/african_data_workshop/not_to_share_with_student/KOG_04_census_data_long_format.csv", sep=",", header=T) 
 #This is the table you used for stem_npp, we will get plot level live wood density from it
@@ -492,10 +493,10 @@ if (!isTRUE(Live_wood_density>0)) {
 }
 # check whether your wood density exist 
 
-#·····················grab live wood density end·····················
+#?????????????????????grab live wood density end?????????????????????
 
 
-#···············calculate decay class wood density···············
+#???????????????calculate decay class wood density???????????????
 
 Make_my_own_density = FALSE
 
@@ -515,7 +516,7 @@ if (Make_my_own_density){
   # dry_weight_g
   # decay_class
   
-  WoodDensity_g_cm3<-read.csv('cwd_lab_data_20170710_XXX.csv',
+  decomposed_wd_g_cm3<-read.csv('cwd_lab_data_20170710_XXX.csv',
                               sep = ",",
                               header = T)%>%
     select(volumn_cm3,dry_weight_g,decay_class)%>%

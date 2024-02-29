@@ -33,7 +33,7 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···How does this script work?  ----
+##  ???How does this script work?  ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Read comments first and come back here to write a paragraph (in French if you
@@ -41,7 +41,7 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~
-##  ···Necessary input  ----
+##  ???Necessary input  ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -49,7 +49,7 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~~
-##  ···important note----
+##  ???important note----
 ##~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -78,7 +78,7 @@
 
 
 ##~~~~~~~~~~~~~~~~~~~~~~
-##···quality check  ----
+##???quality check  ----
 ##~~~~~~~~~~~~~~~~~~~~~~
 library(tidyverse)
 library(lubridate)
@@ -111,7 +111,7 @@ census$Plants_type <- as.factor(census$Plants_type)
 census$quadrat_area_m2 <- as.numeric(census$quadrat_area_m2)
 
 ##~~~~~~~~~~~~~~~~~~~~~
-##···your options  ----
+##???your options  ----
 ##~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -237,36 +237,3 @@ ggsave(filename =paste0(plot_name,"_bar_plot.png") )
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-#  Terhi's email:
-#
-#
-#
-#  - I used total mass, not fine mass, for NPP (not for stock), as I
-#  assumed that all new roots would be fine enough. However, I think
-#  we should use true fine roots only.
-#
-#  - I've been using 'date.value', which is the numeric version of
-#  the date from Excel (in Excel, convert a date column to numeric).
-#  But you might want to go for something more sophisticated. My new
-#  favourite is to turn everything into decimal year, created using
-#  'year', 'month' and 'day' column, so that I don't need to deal
-#  with any date formats. Plus decimal year works beautifully in
-#  figures.
-#
-#  - Because we have a lot of missed collections in Malaysia, I
-#  tried to correct for the uneven collection frequency in the code,
-#  but I would, for simplicity's change, eliminate that part of the
-#  code.
-#
-#  - The estimate for roots until 1 m depth is highly site-specific,
-#  so not sure if it makes sense to share that part of the code.
-#  Best to work with 0-30 cm productivity. If we incorporate the
-#  depth correction, create a separate variable for depth corrected
-#  estimate, so it can be used and/or eliminated easily. I would
-#  definitely do it that way, if I started over. And I would put
-#  the depth correction at the end, not in the middle of the code,
-#  so that I wouldn't need to deal with the two resulting variables
-#  (NPP_0-30 and NPP_0-100) separately.
-#
-#  - Root carbon content is not 50%, Walter did a nice analysis
-#  lately, for tropical roots it's 45%.
