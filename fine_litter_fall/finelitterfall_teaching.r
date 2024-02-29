@@ -163,7 +163,7 @@ if(max(All_npp$DaysBetween,na.rm = TRUE)>60){
 
 
 
-write.csv(All_npp, file=paste0(data_flf$plot_code[1], "_fine_litter_fall_NPP_finest.csv"))
+write.xlsx(All_npp, file=paste0(data_flf$plot_code[1], "_FLFNPP.xlsx"))
 
 #There is no standard error because it is the finest resolution. We recommend to calculate standard error with 
 
